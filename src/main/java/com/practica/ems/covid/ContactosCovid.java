@@ -265,15 +265,13 @@ public class ContactosCovid {
 				break;
 			case 2:
 				fecha = data[i];
-				break;
-			case 3:
 				hora = data[i];
 				posicionPersona.setFechaPosicion(parsearFecha(fecha, hora));
 				break;
-			case 4:
+			case 3:
 				latitud = Float.parseFloat(s);
 				break;
-			case 5:
+			case 4:
 				longitud = Float.parseFloat(s);
 				posicionPersona.setCoordenada(new Coordenada(latitud, longitud));
 				break;
