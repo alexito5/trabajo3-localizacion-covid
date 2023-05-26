@@ -128,7 +128,7 @@ private void reiniciarDatos() {
 }
 
 private void procesarDatos(String[] datas) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
-        EmsPersonNotFoundException, EmsLocalizationNotFoundException {
+        EmsPersonNotFoundException, EmsLocalizationNotFoundException, EmsDuplicatePersonException {
     for (String linea : datas) {
         String datos[] = dividirLineaData(linea);
         validarTipo(datos[0]);
@@ -143,12 +143,16 @@ private void validarTipo(String tipo) throws EmsInvalidTypeException {
     }
 }
 
-private void procesarPersona(String[] datos) throws EmsInvalidNumberOfDataException, EmsPersonNotFoundException {
+private void procesarPersona(String[] datos) throws EmsInvalidNumberOfDataException, EmsDuplicatePersonException {
     if (datos[0].equals("PERSONA")) {
         if (datos.length != Constantes.MAX_DATOS_PERSONA) {
             throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
         }
-        this.poblacion.addPersona(crearPersona(datos));
+        try {
+            this.poblacion.addPersona(this.crearPersona(datos));
+        } catch (EmsDuplicatePersonException e) {
+            throw new EmsDuplicatePersonException();
+        }
     }
 }
 
@@ -172,6 +176,7 @@ private void cerrarArchivos(FileReader fr) {
         e2.printStackTrace();
     }
 }
+
 
 
 
