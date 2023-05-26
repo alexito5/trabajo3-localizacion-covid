@@ -99,8 +99,7 @@ public class ContactosCovid {
 	}
 
 	@SuppressWarnings("resource")
-Reduce la complejidad cognitiva de este método a 15 como mucho:
-public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
+	public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
@@ -158,7 +157,6 @@ public void loadDataFile(String fichero, boolean reset, File archivo, FileReader
 			}
 		}
 	}
-
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
 		try {
@@ -261,20 +259,25 @@ public void loadDataFile(String fichero, boolean reset, File archivo, FileReader
 		float latitud = 0, longitud;
 		for (int i = 1; i < Constantes.MAX_DATOS_LOCALIZACION; i++) {
 			String s = data[i];
-			if (i == 1) {
-    				posicionPersona.setDocumento(s);
-			} else if (i == 2) {
-    				fecha = data[i];
-			} else if (i == 3) {
-    				hora = data[i];
-    				posicionPersona.setFechaPosicion(parsearFecha(fecha, hora));
-			} else if (i == 4) {
-    				latitud = Float.parseFloat(s);
-			} else if (i == 5) {
-    				longitud = Float.parseFloat(s);
-    				posicionPersona.setCoordenada(new Coordenada(latitud, longitud));
+			switch (i) {
+			case 1:
+				posicionPersona.setDocumento(s);
+				break;
+			case 2:
+				fecha = data[i];
+				break;
+			case 3:
+				hora = data[i];
+				posicionPersona.setFechaPosicion(parsearFecha(fecha, hora));
+				break;
+			case 4:
+				latitud = Float.parseFloat(s);
+				break;
+			case 5:
+				longitud = Float.parseFloat(s);
+				posicionPersona.setCoordenada(new Coordenada(latitud, longitud));
+				break;
 			}
-
 		}
 		return posicionPersona;
 	}
