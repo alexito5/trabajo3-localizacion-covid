@@ -99,14 +99,14 @@ public class ContactosCovid {
 	}
 
 	@SuppressWarnings("resource")
-	public void loadDataFile(String fichero, boolean reset) {
-	try (FileReader fr = new FileReader(new File(fichero));
+public void loadDataFile(String fichero, boolean reset) {
+	try (FileReader fr = new FileReader(fichero);
 		 BufferedReader br = new BufferedReader(fr)) {
 		if (reset) {
 			this.poblacion = new Poblacion();
 			this.localizacion = new Localizacion();
 			this.listaContactos = new ListaContactos();
-		} 
+		}
 		
 		String data;
 		while ((data = br.readLine()) != null) {
@@ -136,10 +136,11 @@ public class ContactosCovid {
 				}
 			}
 		}
-	} catch (IOException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
 }
+
 
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
