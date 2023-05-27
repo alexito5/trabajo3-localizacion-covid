@@ -98,8 +98,9 @@ public class ContactosCovid {
 public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) {
     try {
         File archivo = new File(fichero);FileReader fr = new FileReader(archivo);BufferedReader br = new BufferedReader(fr);
-	    if (reset)
+	    if (reset){
             	poblacion = new Poblacion();localizacion = new Localizacion();listaContactos = new ListaContactos(); 
+	    }	    
 	    String data;String[] datas;
         while ((data = br.readLine()) != null) {
             datas = dividirEntrada(data.trim());
