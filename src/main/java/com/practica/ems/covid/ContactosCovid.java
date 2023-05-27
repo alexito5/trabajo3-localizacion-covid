@@ -95,7 +95,7 @@ public class ContactosCovid {
 	}
 
 	@SuppressWarnings("resource")
-	public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) {
+public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) {
     try {
         File archivo = new File(fichero);
         FileReader fr = new FileReader(archivo);
@@ -114,7 +114,7 @@ public class ContactosCovid {
     }
 }
 
-private void procesarLinea(String linea, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) {
+private void procesarLinea(String linea, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) throws EmsInvalidTypeException {
     String[] datos = dividirLineaData(linea);
     if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
         throw new EmsInvalidTypeException();
@@ -130,17 +130,18 @@ private void procesarLinea(String linea, Poblacion poblacion, Localizacion local
     }
 }
 
-private void validarNumeroDatosPersona(String[] datos) {
+private void validarNumeroDatosPersona(String[] datos) throws EmsInvalidNumberOfDataException {
     if (datos.length != Constantes.MAX_DATOS_PERSONA) {
         throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
     }
 }
 
-private void validarNumeroDatosLocalizacion(String[] datos) {
+private void validarNumeroDatosLocalizacion(String[] datos) throws EmsInvalidNumberOfDataException {
     if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
         throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
     }
 }
+
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
 		try {
