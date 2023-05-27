@@ -100,6 +100,9 @@ public class ContactosCovid {
 
 	@SuppressWarnings("resource")
 	public void loadDataFile(String fichero, boolean reset, String datas[], String data ) {
+		File archivo;
+		FileReader fr;
+		BufferedReader br;
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
