@@ -99,9 +99,7 @@ public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Loc
     try {
         File archivo = new File(fichero);FileReader fr = new FileReader(archivo);BufferedReader br = new BufferedReader(fr);
 	    if (reset) {
-            poblacion = new Poblacion();
-            localizacion = new Localizacion();
-            listaContactos = new ListaContactos();
+            poblacion = new Poblacion();localizacion = new Localizacion();listaContactos = new ListaContactos();
         } 
 	    String data;String[] datas;
         while ((data = br.readLine()) != null) {
@@ -121,9 +119,7 @@ public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Loc
                     if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
                         throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
                     }
-                    PosicionPersona pp = crearPosicionPersona(datos);
-                    localizacion.addLocalizacion(pp);
-                    listaContactos.insertarNodoTemporal(pp);
+                    PosicionPersona pp = crearPosicionPersona(datos);localizacion.addLocalizacion(pp);listaContactos.insertarNodoTemporal(pp);
                 }
             }
         }
