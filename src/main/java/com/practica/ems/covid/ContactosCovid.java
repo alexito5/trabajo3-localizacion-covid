@@ -95,7 +95,7 @@ public class ContactosCovid {
 	}
 
 	@SuppressWarnings("resource")
-public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) {
+public void loadDataFile(String fichero, boolean reset, Poblacion poblacion, Localizacion localizacion, ListaContactos listaContactos) throws EmsInvalidTypeException {
     try {
         File archivo = new File(fichero);
         FileReader fr = new FileReader(archivo);
@@ -141,6 +141,7 @@ private void validarNumeroDatosLocalizacion(String[] datos) throws EmsInvalidNum
         throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
     }
 }
+
 
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
