@@ -141,6 +141,17 @@ private void validarNumeroDatosLocalizacion(String[] datos) throws EmsInvalidNum
         throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
     }
 }
+	
+	public class EmsInvalidTypeException extends Exception {
+    public EmsInvalidTypeException() {
+        super("Tipo de datos inválido");
+    }
+    
+    public EmsInvalidTypeException(String message) {
+        super(message);
+    }
+}
+
 
 
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
